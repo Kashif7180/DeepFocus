@@ -1,4 +1,6 @@
-require('dotenv').config({ path: './backend/.env' });
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config({ path: './backend/.env' });
+}
 const express = require('express');
 const cors = require('cors');
 const { connectDB } = require('./config/db');
