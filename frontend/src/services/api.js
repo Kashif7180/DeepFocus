@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || (import.meta.env.MODE === 'production' ? '/api' : 'http://localhost:5000/api'),
+    baseURL: import.meta.env.VITE_API_URL || (import.meta.env.MODE === 'production' ? 'https://deepfocus-backend.onrender.com/api' : 'http://localhost:5000/api'),
 });
 
 // Add a request interceptor to include the JWT token in every request
