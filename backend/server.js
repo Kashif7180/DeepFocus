@@ -1,6 +1,4 @@
-if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config({ path: './backend/.env' });
-}
+require('dotenv').config({ path: './backend/.env' });
 const express = require('express');
 const cors = require('cors');
 const { connectDB } = require('./config/db');
@@ -42,11 +40,9 @@ app.post('/api/admin/trigger-reports', async (req, res) => {
 // Define the port from environment variables or use 5000 as default
 const PORT = process.env.PORT || 5000;
 
-// Start server only if not in production (Vercel handles this)
-if (process.env.NODE_ENV !== 'production') {
-    app.listen(PORT, () => {
-        console.log(`Server is running on port ${PORT}`);
-    });
-}
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
 
 module.exports = app;
