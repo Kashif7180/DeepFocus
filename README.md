@@ -2,6 +2,9 @@
 
 ![DeepFocus Hero](./deepfocus_hero.png)
 
+**🌐 Live Demo:** [https://deepfocus-v2-kashif.vercel.app](https://deepfocus-v2-kashif.vercel.app)  
+**🔗 Backend API:** [https://deepfocus-backend.onrender.com](https://deepfocus-backend.onrender.com)
+
 DeepFocus is a high-fidelity, full-stack productivity ecosystem designed to help you track activities, analyze your performance, and master your time. Built with a modern glassmorphic aesthetic and a robust MERN stack, it provides everything you need to stay in the zone.
 
 ---
@@ -90,6 +93,25 @@ npm run client
 
 ---
 
+## 🌐 Deployment
+
+This project is deployed using a **split architecture** for optimal performance:
+
+### **Frontend (Vercel)**
+- **URL**: [https://deepfocus-v2-kashif.vercel.app](https://deepfocus-v2-kashif.vercel.app)
+- **Platform**: Vercel (Automatic deployments from `main` branch)
+- **Build**: Vite production build with optimized assets
+
+### **Backend (Render)**
+- **URL**: [https://deepfocus-backend.onrender.com](https://deepfocus-backend.onrender.com)
+- **Platform**: Render.com (Free tier)
+- **Note**: First request may take 30-40 seconds (cold start) on free tier
+
+### **Database**
+- **MongoDB Atlas** (Cloud-hosted, always available)
+
+---
+
 ## 📧 Automated Report Service
 The backend includes a scheduled service (`node-cron`) that generates and sends a weekly productivity report to all users.
 - **Schedule**: Every Sunday at 9:00 PM.
@@ -111,4 +133,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
+**Developed by:** [Syed Mohd Kashif Rizvi](https://github.com/Kashif7180)  
 *Made with ❤️ for high-performers.*
