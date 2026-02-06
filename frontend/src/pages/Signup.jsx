@@ -42,7 +42,7 @@ const Signup = () => {
                         <input
                             type="text"
                             className="input-field"
-                            placeholder="Kashif"
+                            placeholder="Enter your full name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             required
