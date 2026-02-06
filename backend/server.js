@@ -27,6 +27,10 @@ app.use('/api/activities', require('./routes/activityRoutes'));
 const { initReportScheduler, generateWeeklyReport } = require('./services/reportService');
 initReportScheduler();
 
+// Init Keep-Alive Service (prevent cold starts on Render)
+const { keepAlive } = require('./services/keepAlive');
+keepAlive(); // Initial ping
+
 // Manual Trigger for testing (Admin or local only ideally)
 app.post('/api/admin/trigger-reports', async (req, res) => {
     try {
