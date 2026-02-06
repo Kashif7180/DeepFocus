@@ -104,11 +104,14 @@ const getInsights = async (req, res) => {
         }
 
         const totals = data.overallStats[0];
-        const efficiency = (totals.totalExpected > 0) ? (totals.totalActual / totals.totalExpected) * 100 : 0;
+        // CORRECT FORMULA: Expected/Actual gives efficiency percentage
+        // If you finish faster (actual < expected) = efficiency > 100%
+        // If you finish slower (actual > expected) = efficiency < 100%
+        const efficiency = (totals.totalActual > 0) ? (totals.totalExpected / totals.totalActual) * 100 : 0;
 
         let status = "";
-        if (efficiency > 110) status = "Over-extended";
-        else if (efficiency < 90) status = "Under-productive";
+        if (efficiency < 90) status = "Over-extended";  // Taking too long
+        else if (efficiency > 110) status = "Under-productive";  // Estimating too high
         else status = "On-target";
 
         res.status(200).json({
