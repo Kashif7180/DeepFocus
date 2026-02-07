@@ -10,3 +10,10 @@ backend/node_modules/
 .vscode/
 .idea/
 .vercel
+
+# Resume files (personal)
+*Resume*.html
+*Resume*.pdf
+*Resume*.docx
+kashif_photo.png
+mongo_uri.txt
