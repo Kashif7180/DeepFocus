@@ -1,27 +1,25 @@
 const cron = require('node-cron');
 const { getDB } = require('../config/db');
 const sendEmail = async (email, subject, html) => {
-    const nodemailer = require('nodemailer');
-    const transporter = nodemailer.createTransport({
-        host: process.env.EMAIL_HOST,
-        port: parseInt(process.env.EMAIL_PORT),
-        secure: false, // false for port 587 (STARTTLS)
-        auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS
-        }
-    });
+    const { Resend } = require('resend');
+    const resend = new Resend(process.env.EMAIL_PASS); // API key
 
     try {
-        await transporter.sendMail({
-            from: '"DeepFocus Weekly" <onboarding@resend.dev>',
-            to: email,
+        const { data, error } = await resend.emails.send({
+            from: 'DeepFocus Weekly <onboarding@resend.dev>',
+            to: [email],
             subject: subject,
             html: html
         });
+
+        if (error) {
+            console.error(`Email failed for ${email}:`, error);
+            return;
+        }
+
         console.log(`Report sent to ${email}`);
-    } catch (err) {
-        console.error(`Email failed for ${email}:`, err.message);
+    } catch (error) {
+        console.error(`Email failed for ${email}:`, error.message);
     }
 };
 
