@@ -87,14 +87,14 @@ const generateWeeklyReport = async () => {
 // Schedule: Every Sunday at 9:00 PM
 // '0 21 * * 0' -> Minutes Hours Day Month DayOfWeek
 const initReportScheduler = () => {
-    // cron.schedule('0 21 * * 0', generateWeeklyReport);
+    cron.schedule('0 21 * * 0', generateWeeklyReport);
 
     // For testing/demo: runs every minute if enabled (NOT recommended for production)
     // cron.schedule('* * * * *', () => {
     //    console.log("Minute check for report service...");
     // });
 
-    console.log('Report Scheduler Initialized (Set for Sunday 9PM)');
+    console.log('Report Scheduler Initialized (Active - Runs Every Sunday 9PM)');
 };
 
 module.exports = { initReportScheduler, generateWeeklyReport };
