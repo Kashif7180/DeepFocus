@@ -16,7 +16,7 @@ const sendEmail = async (email, subject, html) => {
 
     try {
         await transporter.sendMail({
-            from: '"DeepFocus Weekly" <noreply@deepfocus.com>',
+            from: '"DeepFocus Weekly" <onboarding@resend.dev>',
             to: email,
             subject: subject,
             html: html
