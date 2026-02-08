@@ -9,7 +9,7 @@ const sendEmail = async (email, subject, html) => {
     const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
     const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
 
-    sendSmtpEmail.sender = { name: 'DeepFocus Weekly', email: 'noreply@deepfocus.com' };
+    sendSmtpEmail.sender = { name: 'DeepFocus Weekly', email: 'kashif.cricfan@gmail.com' };
     sendSmtpEmail.to = [{ email: email }];
     sendSmtpEmail.subject = subject;
     sendSmtpEmail.htmlContent = html;
