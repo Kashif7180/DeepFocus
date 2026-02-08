@@ -1,23 +1,22 @@
 const cron = require('node-cron');
 const { getDB } = require('../config/db');
 const sendEmail = async (email, subject, html) => {
-    const { Resend } = require('resend');
-    const resend = new Resend(process.env.EMAIL_PASS); // API key
+    const SibApiV3Sdk = require('sib-api-v3-sdk');
+    const defaultClient = SibApiV3Sdk.ApiClient.instance;
+    const apiKey = defaultClient.authentications['api-key'];
+    apiKey.apiKey = process.env.BREVO_API_KEY;
+
+    const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+    const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+
+    sendSmtpEmail.sender = { name: 'DeepFocus Weekly', email: 'noreply@deepfocus.com' };
+    sendSmtpEmail.to = [{ email: email }];
+    sendSmtpEmail.subject = subject;
+    sendSmtpEmail.htmlContent = html;
 
     try {
-        const { data, error } = await resend.emails.send({
-            from: 'DeepFocus Weekly <onboarding@resend.dev>',
-            to: [email],
-            subject: subject,
-            html: html
-        });
-
-        if (error) {
-            console.error(`Email failed for ${email}:`, error);
-            return;
-        }
-
-        console.log(`Report sent to ${email}`);
+        const data = await apiInstance.sendTransacEmail(sendSmtpEmail);
+        console.log(`Report sent to ${email}:`, data.messageId);
     } catch (error) {
         console.error(`Email failed for ${email}:`, error.message);
     }
